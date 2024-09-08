@@ -1,36 +1,14 @@
-CREATE DATABASE laruta;
+INSERT INTO usuarios (nombre, apellido, telefono, email, direccion, password, is_admin)
+VALUES
+('Juan', 'Pérez', '123456789', 'juan.perez@example.com', 'Calle Falsa 123', 'password123', false),
+('Ana', 'Gómez', '987654321', 'ana.gomez@example.com', 'Avenida Siempre Viva 456', 'password456', true);
 
-\c laruta;
+INSERT INTO productos (nombre, precio, stock, descripcion, img, creado_por)
+VALUES
+('Bicitleta Andes', 200000, 100, 'de montaña', 'https://static.netshoes.com.br/produtos/bicicleta-aro-29-ksw-xlt-21v-cambios-shimano-freio-a-disco-mecanico-com-suspensao/08/CGY-0004-108/CGY-0004-108_zoom1.jpg', 1),
+('Bicicleta norte', 400000, 50, 'Modelo hibrido', 'https://images.tcdn.com.br/img/img_prod/1153014/bicicleta_hibrida_urbana_anfinity_new_yorker_aro_700_em_aluminio_cambio_shimano_23_1_47be5fefa89841303a2832be8016f191.jpg', 2);
 
--- Tabla para Usuarios (Clientes)
-CREATE TABLE usuarios (
-    id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    apellido VARCHAR(50) NOT NULL,
-    telefono VARCHAR(20),
-    email VARCHAR(100) UNIQUE NOT NULL,
-    direccion VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    is_admin BOOLEAN NOT NULL DEFAULT false
-);
-
--- Tabla para Productos
-CREATE TABLE productos (
-    id SERIAL PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    precio INT NOT NULL,
-    stock INT NOT NULL,
-    descripcion TEXT,
-    img VARCHAR(1000) NOT NULL,
-    favoritos BOOLEAN default false,
-    creado_por INT NOT NULL REFERENCES usuarios(id),
-    fecha_creacion timestamp with time zone default now()
-    );
-
-CREATE TABLE compras(
-    id SERIAL PRIMARY KEY,
-    id_usuario INT NOT NULL REFERENCES usuarios(id),
-    id_producto INT NOT NULL REFERENCES productos(id),
-    cantidad INT NOT NULL,
-    fecha_de_compra timestamp with time zone default now()
-);
+INSERT INTO compras (id_usuario, id_producto, cantidad)
+VALUES
+(1, 1, 2),
+(2, 2, 1);
