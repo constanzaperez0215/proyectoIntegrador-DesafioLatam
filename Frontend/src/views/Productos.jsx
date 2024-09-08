@@ -68,12 +68,7 @@ const Productos = () => {
             <Card>
 
               {!card.favorite ? <Star color='gray' size={30} onClick={() => addFavorite(card.id)} /> : <StarFill color='gray' size={30} onClick={() => addFavorite(card.id)} />}
-              <Card.Img variant='top' className='img-fluid' src={card.img} />
-
-              {console.log('Image path:', card.img)}
-              <Card.Img variant='top' className='img-fluid' src={`http://localhost:3000${card.img}`} alt={card.nombre} />
-
-
+              <Card.Img variant='top' className='img-fluid' src={card.img} />S
               <Card.Body>
                 <Card.Title>{card.nombre}</Card.Title>
                 <hr />
